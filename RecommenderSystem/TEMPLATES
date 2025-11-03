@@ -1,0 +1,65 @@
+; smartphone
+
+(deftemplate smartphone
+   (slot id)
+   (slot marca)
+   (slot modelo)
+   (slot color)
+   (slot precio)
+   (slot stock))
+
+;computadoras
+  
+ (deftemplate computadoras
+    (slot id)
+    (slot marca)
+    (slot modelo)
+    (slot precio)
+    (slot stock)
+    (slot color))
+
+; clientes
+  
+  (deftemplate clientes
+    (slot id-cliente)
+    (slot nombre)
+    (slot correo)
+    (slot telefono)
+    (slot tipo-cliente))
+
+; accesorios
+
+  (deftemplate accesorios
+    (slot nombre)
+    (slot tipo)
+    (slot marca)
+    (slot precio)
+    (slot stock))
+
+ 
+  (deftemplate tarjeta-credito
+    (slot id-tarjeta)
+    (slot id-cliente)
+    (slot tipo)
+    (slot numero)
+    (slot fecha-vencimiento)
+    (slot banco)
+    (slot saldo-disponible)
+    (slot limite-credito))
+
+
+  (deftemplate vales
+    (slot id-vale)
+    (slot codigo)
+    (slot descripcion)
+    (slot valor-descuento)
+    (slot fecha-expiracion)
+    (slot condiciones)
+    (slot estado))
+
+(deftemplate orden
+  (slot producto)
+  (slot marca)
+  (slot modelo)
+  (slot metodo-pago)
+  (slot qty))
