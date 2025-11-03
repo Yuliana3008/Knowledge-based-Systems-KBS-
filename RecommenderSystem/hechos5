@@ -1,0 +1,94 @@
+(deffacts smartphones-inicial
+  "Hechos iniciales de Smartphones con stock"
+  (smartphone (id 1) (marca "Apple") (modelo "iPhone16") (color "Rojo") (precio 1200) (stock 50))
+  (smartphone (id 2) (marca "Apple") (modelo "iPhone15") (color "Negro") (precio 1000) (stock 30))
+  (smartphone (id 3) (marca "Samsung") (modelo "GalaxyS25") (color "Blanco") (precio 1100) (stock 20))
+  (smartphone (id 4) (marca "Samsung") (modelo "Note21") (color "Azul") (precio 1150) (stock 15))
+  (smartphone (id 5) (marca "Xiaomi") (modelo "Mi12") (color "Gris") (precio 800) (stock 25))
+  (smartphone (id 6) (marca "Huawei") (modelo "P50") (color "Negro") (precio 900) (stock 10))
+  (smartphone (id 7) (marca "Google") (modelo "Pixel9") (color "Blanco") (precio 950) (stock 12))
+  (smartphone (id 8) (marca "OnePlus") (modelo "11") (color "Rojo") (precio 850) (stock 8))
+  (smartphone (id 9) (marca "Motorola") (modelo "Edge") (color "Azul") (precio 700) (stock 5))
+  (smartphone (id 10) (marca "Sony") (modelo "Xperia10") (color "Negro") (precio 750) (stock 20))
+  (smartphone (id 11) (marca "Samsung") (modelo "SamsungNote21") (color "Azul") (precio 4500) (stock 3))
+)
+
+ 
+(deffacts computadoras-inicial
+  "Hechos iniciales de Computadoras"
+  (computadoras (id 1) (marca "Apple") (modelo "MacBookAir") (precio 1500) (stock 10) (color "Gris"))
+  (computadoras (id 2) (marca "Apple") (modelo "MacBookPro") (precio 2000) (stock 8) (color "Plata"))
+  (computadoras (id 3) (marca "Dell") (modelo "XPS13") (precio 1400) (stock 12) (color "Negro"))
+  (computadoras (id 4) (marca "HP") (modelo "Envy15") (precio 1300) (stock 6) (color "Gris"))
+  (computadoras (id 5) (marca "Lenovo") (modelo "ThinkPadX1") (precio 1450) (stock 7) (color "Negro"))
+  (computadoras (id 6) (marca "Asus") (modelo "ZenBook14") (precio 1200) (stock 9) (color "Azul"))
+  (computadoras (id 7) (marca "Acer") (modelo "Swift5") (precio 1100) (stock 5) (color "Plata"))
+  (computadoras (id 8) (marca "Microsoft") (modelo "SurfaceLaptop") (precio 1600) (stock 4) (color "Gris"))
+  (computadoras (id 9) (marca "HP") (modelo "Pavilion14") (precio 1000) (stock 15) (color "Negro"))
+  (computadoras (id 10) (marca "Dell") (modelo "Inspiron15") (precio 900) (stock 20) (color "Plata"))
+)
+
+
+
+
+(deffacts clientes-inicial
+  "Hechos iniciales de Clientes"
+  (clientes (id-cliente 101) (nombre "Juan Perez") (correo "juanp@mail.com") (telefono "5551234567") (tipo-cliente "minorista"))
+  (clientes (id-cliente 102) (nombre "Ana Lopez") (correo "anal@mail.com") (telefono "5559876543") (tipo-cliente "mayorista"))
+  (clientes (id-cliente 103) (nombre "Luis Gomez") (correo "luisg@mail.com") (telefono "5556781234") (tipo-cliente "minorista"))
+  (clientes (id-cliente 104) (nombre "Maria Torres") (correo "mariat@mail.com") (telefono "5552345678") (tipo-cliente "mayorista"))
+  (clientes (id-cliente 105) (nombre "Carlos Ruiz") (correo "carlosr@mail.com") (telefono "5553456789") (tipo-cliente "minorista"))
+  (clientes (id-cliente 106) (nombre "Sofia Diaz") (correo "sofiad@mail.com") (telefono "5554567890") (tipo-cliente "mayorista"))
+  (clientes (id-cliente 107) (nombre "Pedro Sanchez") (correo "pedros@mail.com") (telefono "5555678901") (tipo-cliente "minorista"))
+  (clientes (id-cliente 108) (nombre "Laura Morales") (correo "lauram@mail.com") (telefono "5556789012") (tipo-cliente "mayorista"))
+  (clientes (id-cliente 109) (nombre "Diego Herrera") (correo "diegoh@mail.com") (telefono "5557890123") (tipo-cliente "minorista"))
+  (clientes (id-cliente 110) (nombre "Valeria Rojas") (correo "valeriar@mail.com") (telefono "5558901234") (tipo-cliente "mayorista"))
+)
+
+
+(deffacts accesorios-inicial
+  "Hechos iniciales de Accesorios"
+  (accesorios (nombre "CargadorUSB-C") (tipo "Energia") (marca "Anker") (precio 25) (stock 100))
+  (accesorios (nombre "FundaiPhone16") (tipo "Proteccion") (marca "Apple") (precio 35) (stock 50))
+  (accesorios (nombre "AudifonosBluetooth") (tipo "Audio") (marca "Sony") (precio 50) (stock 75))
+  (accesorios (nombre "MouseInalambrico") (tipo "Periferico") (marca "Logitech") (precio 30) (stock 60))
+  (accesorios (nombre "TecladoBluetooth") (tipo "Periferico") (marca "Microsoft") (precio 40) (stock 40))
+  (accesorios (nombre "BaseEnfriamiento") (tipo "Refrigeracion") (marca "CoolerMaster") (precio 60) (stock 20))
+  (accesorios (nombre "PantallaProtector") (tipo "Proteccion") (marca "Samsung") (precio 15) (stock 80))
+  (accesorios (nombre "EstucheLaptop") (tipo "Proteccion") (marca "HP") (precio 45) (stock 30))
+  (accesorios (nombre "HubUSB") (tipo "Accesorio") (marca "Anker") (precio 20) (stock 50))
+  (accesorios (nombre "SoporteCelular") (tipo "Accesorio") (marca "Xiaomi") (precio 10) (stock 70))
+  (accesorios (nombre "MagicMouse") (tipo "mouse") (marca "Apple") (precio 1200) (stock 10))
+)
+
+
+
+
+
+(deffacts tarjetas-inicial
+  "Hechos iniciales de Tarjetas de Crédito"
+  (tarjeta-credito (id-tarjeta 301) (id-cliente 101) (tipo "Visa") (numero "12345685747890") (fecha-vencimiento "12/27") (banco "Bancomer") (saldo-disponible 5000) (limite-credito 10000))
+  (tarjeta-credito (id-tarjeta 302) (id-cliente 102) (tipo "MasterCard") (numero "98765445891234") (fecha-vencimiento "09/26") (banco "Santander") (saldo-disponible 3000) (limite-credito 8000))
+  (tarjeta-credito (id-tarjeta 303) (id-cliente 103) (tipo "Visa") (numero "11223311774455") (fecha-vencimiento "10/27") (banco "Banamex") (saldo-disponible 4000) (limite-credito 9000))
+  (tarjeta-credito (id-tarjeta 304) (id-cliente 104) (tipo "AmericanExpress") (numero "66778896859900") (fecha-vencimiento "11/26") (banco "HSBC") (saldo-disponible 2000) (limite-credito 7000))
+  (tarjeta-credito (id-tarjeta 305) (id-cliente 105) (tipo "Visa") (numero "55443312022211") (fecha-vencimiento "08/27") (banco "Bancomer") (saldo-disponible 3500) (limite-credito 7500))
+  (tarjeta-credito (id-tarjeta 306) (id-cliente 106) (tipo "MasterCard") (numero "99887798566655") (fecha-vencimiento "12/28") (banco "Santander") (saldo-disponible 4500) (limite-credito 8500))
+  (tarjeta-credito (id-tarjeta 307) (id-cliente 107) (tipo "Visa") (numero "11112236743333") (fecha-vencimiento "07/26") (banco "Banamex") (saldo-disponible 3800) (limite-credito 8000))
+  (tarjeta-credito (id-tarjeta 308) (id-cliente 108) (tipo "MasterCard") (numero "44445512556666") (fecha-vencimiento "05/27") (banco "HSBC") (saldo-disponible 4200) (limite-credito 9000))
+  (tarjeta-credito (id-tarjeta 309) (id-cliente 109) (tipo "Visa") (numero "77778899669999") (fecha-vencimiento "06/27") (banco "Bancomer") (saldo-disponible 3600) (limite-credito 8000))
+  (tarjeta-credito (id-tarjeta 310) (id-cliente 110) (tipo "AmericanExpress") (numero "22223312544444") (fecha-vencimiento "09/28") (banco "Santander") (saldo-disponible 5000) (limite-credito 10000))
+)
+
+(deffacts vales-inicial
+  "Hechos iniciales de Vales"
+  (vales (id-vale 401) (codigo "DESC20") (descripcion "20% de descuento en toda la tienda") (valor-descuento 20) (fecha-expiracion "31/12/2025") (condiciones "Solo compras mayores a $500") (estado "activo"))
+  (vales (id-vale 402) (codigo "REGALO50") (descripcion "$50 de descuento por cada $1000") (valor-descuento 50) (fecha-expiracion "30/11/2025") (condiciones "Solo una vez por cliente") (estado "activo"))
+  (vales (id-vale 403) (codigo "BLACKFRIDAY") (descripcion "30% de descuento en smartphones") (valor-descuento 30) (fecha-expiracion "28/11/2025") (condiciones "Válido solo en iPhone y Samsung") (estado "activo"))
+  (vales (id-vale 404) (codigo "NAVIDAD15") (descripcion "15% de descuento en accesorios") (valor-descuento 15) (fecha-expiracion "25/12/2025") (condiciones "Solo accesorios") (estado "activo"))
+  (vales (id-vale 405) (codigo "VERANO10") (descripcion "10% de descuento en computadoras") (valor-descuento 10) (fecha-expiracion "30/06/2025") (condiciones "Solo laptops") (estado "activo"))
+  (vales (id-vale 406) (codigo "VIP25") (descripcion "25% de descuento para clientes VIP") (valor-descuento 25) (fecha-expiracion "31/12/2025") (condiciones "Solo clientes mayoristas") (estado "activo"))
+  (vales (id-vale 407) (codigo "OFERTA30") (descripcion "30% de descuento en accesorios seleccionados") (valor-descuento 30) (fecha-expiracion "31/10/2025") (condiciones "Solo productos seleccionados") (estado "activo"))
+  (vales (id-vale 408) (codigo "NUEVOCLIENTE") (descripcion "20% de descuento primera compra") (valor-descuento 20) (fecha-expiracion "31/12/2025") (condiciones "Solo clientes nuevos") (estado "activo"))
+  (vales (id-vale 409) (codigo "FRECUENTE10") (descripcion "10% de descuento para clientes frecuentes") (valor-descuento 10) (fecha-expiracion "31/12/2025") (condiciones "Clientes con más de 3 compras") (estado "activo"))
+  (vales (id-vale 410) (codigo "BLACKWEEK") (descripcion "15% de descuento en toda la tienda") (valor-descuento 15) (fecha-expiracion "31/10/2025") (condiciones "Solo durante Black Week") (estado "activo"))
+)
