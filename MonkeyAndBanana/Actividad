@@ -1,1 +1,57 @@
+(deftemplate estado
+   (slot mono)
+   (slot caja)
+   (slot mono-en-caja)
+   (slot tiene-banana)
+)
 
+(deffacts inicio
+   (estado
+      (mono suelo)
+      (caja esquina)
+      (mono-en-caja no)
+      (tiene-banana no))
+)
+
+;;  El mono camina hacia la caja
+(defrule mover-a-caja
+   ?e <- (estado (mono suelo) (caja ?posCaja) (mono-en-caja no) (tiene-banana no))
+   =>
+   (retract ?e)
+   (assert (estado (mono ?posCaja) (caja ?posCaja) (mono-en-caja no) (tiene-banana no)))
+   (printout t "El mono camina hacia la caja." crlf)
+)
+
+;; El mono empuja la caja al centro
+(defrule empujar-caja-al-centro
+   ?e <- (estado (mono ?pos) (caja ?pos) (mono-en-caja no) (tiene-banana no))
+   =>
+   (retract ?e)
+   (assert (estado (mono centro) (caja centro) (mono-en-caja no) (tiene-banana no)))
+   (printout t "El mono empuja la caja al centro." crlf)
+)
+
+;;  El mono se sube a la caja
+(defrule subir-caja
+   ?e <- (estado (mono centro) (caja centro) (mono-en-caja no) (tiene-banana no))
+   =>
+   (retract ?e)
+   (assert (estado (mono centro) (caja centro) (mono-en-caja si) (tiene-banana no)))
+   (printout t "El mono se sube a la caja." crlf)
+)
+
+;;  El mono toma la banana
+(defrule tomar-banana
+   ?e <- (estado (mono centro) (caja centro) (mono-en-caja si) (tiene-banana no))
+   =>
+   (retract ?e)
+   (assert (estado (mono centro) (caja centro) (mono-en-caja si) (tiene-banana si)))
+   (printout t "El mono toma la banana" crlf)
+)
+
+;;  logrado
+(defrule objetivo-logrado
+   (estado (tiene-banana si))
+   =>
+   (printout t crlf  "El mono ha tomado la banana." crlf)
+)
