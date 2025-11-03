@@ -1,0 +1,171 @@
+
+;; REGLAS DE OFERTAS, DESCUENTOS, REGALOS Y FINANCIAMIENTO
+
+
+(defrule financiamiento-iphone16-banamex
+   (declare (salience 50))
+   (orden (modelo "iPhone16") (metodo-pago "banamex-oro"))
+   =>
+   (printout t "Orden: Ofrecer 24 meses sin intereses con tarjeta Banamex." crlf)
+)
+
+(defrule financiamiento-samsungnote-visa
+   (declare (salience 50))
+   (orden (modelo "GalaxyS25") (metodo-pago "visa"))
+   =>
+   (printout t "Orden: Ofrecer 12 meses sin intereses con tarjeta VISA." crlf)
+)
+
+
+(defrule financiamiento-samsung-liverpoolVisa
+   (declare (salience 50))
+   (orden (modelo "Note21") (metodo-pago "Liverpool-visa"))
+   =>
+   (printout t "-Oferta: Ofrecer 12 meses sin intereses con tarjeta Liverpool-visa." crlf)
+)
+
+
+(defrule descuento-iphone15-efectivo
+   (declare (salience 50))
+   (orden  (metodo-pago "efectivo"))
+   =>
+   (printout t "-Ofrecer 10% de descuento por pago en efectivo." crlf)
+)
+
+(defrule regalo-funda-pixel9
+   (declare (salience 50))
+   (orden (modelo "Pixel9"))
+   =>
+   (printout t "-Ofrecer funda protectora gratis con la compra de Pixel9." crlf)
+)
+
+(defrule descuento-xperia10-mastercard
+   (declare (salience 50))
+   (orden (metodo-pago "mastercard"))
+   =>
+   (printout t "-Ofrecer 15% de descuento pagando con Mastercard." crlf)
+)
+
+(defrule financiamiento-macbookair-banamex
+   (declare (salience 50))
+   (orden (modelo "MacBookAir") (metodo-pago "banamex-oro"))
+   =>
+   (printout t "Orden: Ofrecer 18 meses sin intereses con Banamex Oro." crlf)
+)
+
+(defrule descuento-macbookpro-efectivo
+   (declare (salience 50))
+   (orden (modelo "MacBookPro") (metodo-pago "efectivo"))
+   =>
+   (printout t "Orden: Ofrecer 8% de descuento por pago en efectivo." crlf)
+)
+
+(defrule tarjeta-BBVA
+   (declare (salience 50))
+   (orden (metodo-pago "BBVA"))
+   =>
+   (printout t "Al pagar con tarjeta BBVA, ofrecer 3 meses sin intereses." crlf)
+)
+
+(defrule tarjeta-banamex
+   (declare (salience 50))
+   (orden (metodo-pago "banamex"))
+   =>
+   (printout t "Al pagar con tarjeta Banamex, ofrecer 6 meses sin intereses." crlf)
+)
+
+(defrule accesorios-para-mac
+   (declare (salience 40))
+   (orden (producto "computadoras"))
+   (accesorios (tipo "mouse"))
+   =>
+   (printout t "💡 Añadir mouse inalámbrico con descuento especial por compra de computadora." crlf)
+)
+
+
+
+
+(defrule vale-liverpool
+   (declare (salience 50))
+   (orden (metodo-pago "liverpool"))
+   =>
+   (printout t "Orden: Ofrecer $200 en vales Liverpool por compras mayores a $2000." crlf)
+)
+
+(defrule tipo-cliente-mayorista
+   (declare (salience 40))
+   (orden (producto ?p) (marca ?m) (modelo ?mod) (qty ?q&:(> ?q 10)))
+   =>
+   (printout t "→ Cliente clasificado como MAYORISTA." crlf)
+   (printout t "   Aplicar descuento por volumen (10%)." crlf)
+)
+
+(defrule tipo-cliente-menudista
+   (declare (salience 40))
+   (orden (producto ?p) (marca ?m) (modelo ?mod) (qty ?q&:(<= ?q 10)))
+   =>
+   (printout t "→ Cliente clasificado como MENUDISTA." crlf)
+   (printout t "   Sin descuento por volumen." crlf)
+)
+
+(defrule ofertas-por-smartphone
+   (declare (salience 40))
+   (orden (producto "smartphone"))
+   =>
+   (printout t "💡 Recomendación: añadir funda protectora." crlf)
+)
+
+(defrule ofertas-por-computadoras
+   (declare (salience 40))
+   (orden (producto "computadoras"))
+   =>
+   (printout t "💡 Recomendación: añadir Mouse inalambrico." crlf)
+)
+
+(defrule accesorios-descuento-smartphone
+   (declare (salience 40))
+   (orden (producto "smartphone"))
+   =>
+   (printout t "🎁 Oferta: Funda y mica con 15% de descuento por comprar un smartphone." crlf)
+)
+
+
+
+;; Combo Apple
+(defrule promo-mac-iphone
+   (declare (salience 40))
+   ?o1 <- (orden (marca "Apple") (modelo "MacBookAir") (metodo-pago "contado"))
+   ?o2 <- (orden (marca "Apple") (modelo "iPhone16") (metodo-pago "contado"))
+   =>
+   (printout t "🎉 Promoción combo MacBook Air + iPhone16" crlf)
+   (printout t "🎁 Bono: $100 MXN en vales por cada $1000 de compra" crlf)
+)
+
+
+;; REGLAS DE STOCK Y RETIRO DE ORDEN
+
+
+(defrule stock-insuficiente
+   (declare (salience -10))
+   ?o <- (orden (marca ?m) (modelo ?mod) (qty ?q))
+   (or
+    ?s <- (smartphone (marca ?m) (modelo ?mod) (stock ?stk&:(< ?stk ?q)))
+    ?s <- (computadoras (marca ?m) (modelo ?mod) (stock ?stk&:(< ?stk ?q)))
+   )
+   =>
+   (printout t "⚠️ No hay suficiente stock de " ?mod ". Solo quedan " ?stk " unidades." crlf)
+   (retract ?o)
+)
+
+(defrule actualizar-stock
+   (declare (salience -20))
+   ?o <- (orden (marca ?m) (modelo ?mod) (qty ?q))
+   (or
+    ?s <- (smartphone (marca ?m) (modelo ?mod) (stock ?stk&:(>= ?stk ?q)))
+    ?s <- (computadoras (marca ?m) (modelo ?mod) (stock ?stk&:(>= ?stk ?q)))
+   )
+   =>
+   (modify ?s (stock (- ?stk ?q)))
+   (retract ?o)
+   (printout t "📦 Stock actualizado de " ?mod ": ahora " (- ?stk ?q) " unidades disponibles." crlf)
+)
